@@ -13,20 +13,23 @@ public class Main {
 
     //登录
     //可以利用返回值 的向上转型 达到发挥的一致性 ：> User
-    public static User login(){
+    public static User login() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("请输入您的姓名：>");
         String name = scanner.nextLine();
         System.out.println("请输入您的身份：> 1 -> 管理员  0 -> 普通用户");
         int choice = scanner.nextInt();
-        if(choice == 1){
+        if (choice == 1) {
             /*AdminUser adminUser = new AdminUser(name);
             return adminUser;*/
             return new AdminUser(name);
-        }else{
+        } else if (choice == 0) {
             /*NormalUser normalUser = new NormalUser(name);
             return normalUser;*/
             return new NormalUser(name);
+        } else {
+            System.out.println("您的输入有错误，请重新输入！");
+            return login();
         }
     }
 

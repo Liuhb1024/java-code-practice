@@ -24,7 +24,7 @@ public class BookList {
         return books[pos];
     }
 
-    public void setBook(int pos, Book book){
+    public void setBooks(int pos, Book book){
         books[pos] = book;
     }
 
