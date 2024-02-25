@@ -1,0 +1,35 @@
+server:
+  port: 9090
+
+spring:
+  datasource:
+    url: jdbc:mysql://127.0.0.0:3306/dbname?characterEncoding=utf8&useSSL=false
+    username: root
+    password: root
+
+# 自定义配置项
+string.value: ben666
+string:
+  value2: ben22222222
+  str1: Hello \n Spring Boot.
+  str2: 'Hello \n Spring Boot.'
+  str3: "Hello \n Spring Boot."
+
+student:
+  id: 1
+  name: java
+  age: 18
+
+dbtypes:
+  name:
+    - mysql
+    - sqlserver
+    - db2
+
+maptypes:
+  map:
+    k1: kk1
+    k2: kk2
+    k3: kk3
+
+# maptypes: {map: {k1: kk1,k2: kk2, k3: kk3}} 这样写也是可以的
