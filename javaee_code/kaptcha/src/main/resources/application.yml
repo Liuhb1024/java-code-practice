@@ -1,0 +1,21 @@
+kaptcha:
+  items:
+    home:
+      path: /home/captcha
+      session:
+        key: HOME_KAPTCHA_SESSION_KEY
+        date: HOME_KAPTCHA_SESSION_DATE
+
+    admin:
+      path: /admin/captcha
+      session:
+        key: KAPTCHA_SESSION_KEY
+        date: KAPTCHA_SESSION_DATE
+  text-producer:
+    char:
+      length: 4
+    font:
+      color: blue
+  image:
+    height: 45
+    width: 120
