@@ -33,3 +33,10 @@ maptypes:
     k3: kk3
 
 # maptypes: {map: {k1: kk1,k2: kk2, k3: kk3}} 这样写也是可以的
+
+# 日志配置
+logging:
+  level:
+    root: info
+  file:
+    path: logger/

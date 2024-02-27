@@ -1,0 +1,10 @@
+2024-02-26 20:50:38.780  INFO 27152 --- [main] org.haobin.ioc.IocApplication            : Starting IocApplication using Java 1.8.0_361 on LAPTOP-RC4A81SV with PID 27152 (D:\JavaEE_pro\ioc\target\classes started by 86159 in D:\JavaEE_pro\ioc)
+2024-02-26 20:50:38.782  INFO 27152 --- [main] org.haobin.ioc.IocApplication            : No active profile set, falling back to 1 default profile: "default"
+2024-02-26 20:50:39.255  INFO 27152 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2024-02-26 20:50:39.260  INFO 27152 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-02-26 20:50:39.260  INFO 27152 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2024-02-26 20:50:39.360  INFO 27152 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-02-26 20:50:39.361  INFO 27152 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 555 ms
+2024-02-26 20:50:39.525  INFO 27152 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2024-02-26 20:50:39.586  INFO 27152 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2024-02-26 20:50:39.592  INFO 27152 --- [main] org.haobin.ioc.IocApplication            : Started IocApplication in 1.08 seconds (JVM running for 1.761)
