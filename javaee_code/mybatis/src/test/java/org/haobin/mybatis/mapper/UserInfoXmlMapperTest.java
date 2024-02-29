@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.Arrays;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -31,7 +33,7 @@ class UserInfoXmlMapperTest {
         userInfo.setPassword("123456");
         userInfo.setGender(1);
         Integer result = userInfoXmlMapper.insert(userInfo);
-        log.info("result:"+result+",id:"+userInfo.getId());
+        log.info("result:" + result + ",id:" + userInfo.getId());
     }
 
     @Test
@@ -41,11 +43,42 @@ class UserInfoXmlMapperTest {
 
     @Test
     void update() {
-        userInfoXmlMapper.update("admin",2);
+        userInfoXmlMapper.update("admin", 2);
     }
 
     @Test
     void queryUserList2() {
         log.info(userInfoXmlMapper.queryUserList().toString());
+    }
+
+    @Test
+    void insert2() {
+        UserInfo userInfo = new UserInfo();
+        userInfo.setUsername(("lisi"));
+        userInfo.setAge(15);
+        userInfo.setPassword("123456");
+//        userInfo.setGender(1);
+        Integer result = userInfoXmlMapper.insert2(userInfo);
+        log.info("result:" + result + ",id:" + userInfo.getId());
+    }
+
+    @Test
+    void queryUserByWhere() {
+        log.info(userInfoXmlMapper.queryUserByWhere(null, 15).toString());
+    }
+
+    @Test
+    void update2() {
+        UserInfo userInfo = new UserInfo();
+        userInfo.setUsername("lisi");
+        userInfo.setAge(100);
+        userInfo.setPassword("123456");
+        userInfo.setId(11);
+        Integer result = userInfoXmlMapper.update2(userInfo);
+    }
+
+    @Test
+    void batchDelete() {
+        userInfoXmlMapper.batchDelete(Arrays.asList(1,2,3));
     }
 }

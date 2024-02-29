@@ -4,6 +4,7 @@ import lombok.Data;
 import org.apache.ibatis.annotations.*;
 import org.haobin.mybatis.model.UserInfo;
 
+import javax.jws.soap.SOAPBinding;
 import java.util.List;
 
 /**
@@ -48,6 +49,24 @@ public interface UserInfoMapper {
             @Result(column = "update_time",property = "updateTime"),
     })
     UserInfo queryUserInfo(Integer userId);
+
+    @Select("select * from userinfo where username = #{name}")
+    UserInfo queryUserInfoByName(String name);
+
+    @Select("select * from userinfo where username = '${name}'")
+    UserInfo queryUserInfoByName2(String name);
+
+    /**
+     * sql 注入
+     * @param name
+     * @return
+     */
+    @Select("select * from userinfo where username = '${name}'")
+    List<UserInfo> queryUserInfoByName3(String name);
+
+    @Select("select * from userInfo where id = ${id}")
+    UserInfo queryUserInfo2(Integer userId);
+
 
     /**
      * @Result实现复用
@@ -96,4 +115,29 @@ public interface UserInfoMapper {
     @Update("update userinfo set username=#{username}, password=#{password}, age=#{age} " +
             "where id = #{id}")
     Integer updateByOb(UserInfo userInfo);
+
+    @Select("select  * from userinfo where username = '${name}' and password = '${password}'")
+    List<UserInfo> queryUserByNameAndPassword(@Param("name") String name, @Param("password") String password);
+
+    @Select("select * from  userinfo order by id ${order}")
+    List<UserInfo>  queryUserByOrder(String order);
+
+    /**
+     * 模糊查询
+     * @param name
+     * @return
+     */
+    @Select("select * from  userinfo where username like '%${name}%'")
+    List<UserInfo>  queryUserByLike(String name);
+
+    @Select("select * from userinfo where username like CONCAT('%',#{name},'%')" )
+    List<UserInfo>queryUserByLike2(String name);
+
+    @Delete("<script>" +
+            "delete from userinfo where id in "+
+            "<foreach collection='list' separator=',' open='(' close=')' item='id'> "+
+            "#{id} "+
+            "</foreach> "+
+            "</script> ")
+    Integer batchDelete(List<Integer> ids);
 }

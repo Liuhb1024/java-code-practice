@@ -8,13 +8,12 @@
         <result property="updateTime" column="update_time"></result>
     </resultMap>
 
+    <sql id="cols">
+        id,username,password,gender,age,phone,
+    </sql>
     <select id="queryUserList" resultType="org.haobin.mybatis.model.UserInfo">
-        select id,
-               username,
-               password,
-               gender,
-               age,
-               phone,
+        select
+            <include refid="cols"></include>
                delete_flag as deleteFlag,
                create_time as createTime,
                update_time as updateTime
@@ -22,21 +21,65 @@
     </select>
 
     <select id="queryUserList2" resultMap="BaseMap">
-        select id,
-               username,
-               password,
-               gender,
-               age,
-               phone,
+        select
+            <include refid="cols"></include>
                delete_flag,
                create_time,
                update_time
         from userinfo
     </select>
+    <select id="queryUserByWhere" resultType="org.haobin.mybatis.model.UserInfo">
+        select * from userinfo
+        <!--        where-->
+        <!--            <if test="userName != null">-->
+        <!--                username = #{userName} and-->
+        <!--            </if>-->
+        <!--          <if test="age != null">-->
+        <!--                age = #{age}-->
+        <!--          </if>-->
+        <where>
+            <if test="userName != null">
+                username = #{userName}
+            </if>
+            <if test="age != null">
+                and age = #{age}
+            </if>
+        </where>
+    </select>
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="id">
         insert into userinfo(username, password, age, gender, phone)
         values (#{username}, #{password}, #{age}, #{gender}, #{phone})
+    </insert>
+
+    <insert id="insert2" useGeneratedKeys="true" keyProperty="id">
+        insert into
+        userinfo
+        <trim prefixOverrides="," prefix="(" suffix=")" suffixOverrides=",">
+            <if test="username!=null">
+                username,
+            </if>
+            <if test="password!=null">
+                password,
+            </if>
+            <if test="age!=null">
+                age,
+            </if>
+            <if test="gender!=null">
+                gender,
+            </if>
+            <if test="phone!=null">
+                phone,
+            </if>
+        </trim>
+        values
+        <trim prefixOverrides="," prefix="(" suffix=")" suffixOverrides=",">
+            <if test="username!=null">#{username},</if>
+            <if test="password!=null">#{password},</if>
+            <if test="age!=null">#{age},</if>
+            <if test="gender!=null">#{gender},</if>
+            <if test="phone!=null">#{phone},</if>
+        </trim>
     </insert>
     <delete id="delete">
         delete
@@ -48,5 +91,30 @@
         set password = #{arg0}
         where id = #{arg1}
     </update>
+    <update id="update2">
+        update userinfo
+        <set>
+            <if test="username!=null">
+                username = #{username},
+            </if>
+            <if test="password!=null">
+                password = #{password},
+            </if>
+            <if test="age!=null">
+                age = #{age}
+            </if>
+        </set>
+
+        where id = #{id}
+    </update>
+    <delete id="batchDelete">
+        delete
+        from userinfo
+        where id in
+        <foreach collection="ids" separator="," open="(" close=")" item="id">
+            #{id}
+        </foreach>
+    </delete>
+
 
 </mapper>

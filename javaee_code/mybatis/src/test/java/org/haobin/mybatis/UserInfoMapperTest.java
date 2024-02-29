@@ -39,6 +39,7 @@ class UserInfoMapperTest {
         log.info(userInfoMapper.queryUserInfo(1).toString());
     }
 
+
     @Test
     void queryUserInfoByDF() {
         log.info(userInfoMapper.queryUserInfoByDF(1, 0).toString());

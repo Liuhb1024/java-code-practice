@@ -17,8 +17,19 @@ import java.util.List;
 public class UserController {
     @Autowired
     private UserService userService;
+
     @RequestMapping("/queryAllUser")
-    public List<UserInfo> queryAllUser(){
+    public List<UserInfo> queryAllUser() {
         return userService.queryAllUser();
     }
+
+    /**
+     * 模拟 sql 注入 完成用户登录
+     */
+    @RequestMapping("/login")
+    public UserInfo login(String userName, String password) {
+        // 1. 根据用户名和密码去查询
+        return userService.queryUserByNameAndPassword(userName, password) ;
+    }
+
 }
